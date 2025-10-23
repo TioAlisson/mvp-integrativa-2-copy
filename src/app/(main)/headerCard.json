@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Retenção da Equipe",
+    "value": "+80%",
+    "bgColor": "bg-blue-400",
+    "textColor": "text-blue-400",
+    "perc": 92
+  },
+  {
+    "title": "Tempo de Integração",
+    "value": "4,2 meses",
+    "bgColor": "bg-blue-400",
+    "textColor": "text-blue-400",
+    "perc": 85
+  },
+  {
+    "title": "Custo Médio de Contratação",
+    "value": "R$ 12.500",
+    "bgColor": "bg-blue-400",
+    "textColor": "text-blue-400",
+    "perc": 90
+  }
+]

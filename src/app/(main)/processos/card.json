@@ -1,0 +1,98 @@
+[
+  {
+    "id": "1",
+    "titulo": "Como solicitar acesso ao VPN da empresa",
+    "descricao": "Guia completo para novos funcionários solicitarem e configurarem o acesso à rede privada da empresa.",
+    "subCategoria": "Redes",
+    "status": "",
+    "responsavel": "Maria Silva",
+    "ultimaAtualizacao": "2025-10-21T09:30:00Z",
+    "setor": "Informática",
+    "ferramentasUsadas": [
+      "FortiClient",
+      "Sistema de Chamados",
+      "E-mail"
+    ],
+    "passoAPasso": [
+      {
+        "titulo": "Abrir Chamado",
+        "detalhe": "Crie um chamado no sistema selecionando 'Infraestrutura' e 'Acesso Remoto'."
+      },
+      {
+        "titulo": "Preencher Dados",
+        "detalhe": "Informe seu nome, cargo, ID de funcionário e motivo do acesso."
+      },
+      {
+        "titulo": "Aguardar Aprovação",
+        "detalhe": "O time de TI irá revisar e aprovar sua solicitação em até 2 dias úteis."
+      },
+      {
+        "titulo": "Receber Instruções",
+        "detalhe": "Você receberá um e-mail com as instruções para configuração do VPN."
+      },
+      {
+        "titulo": "Instalar o Cliente VPN",
+        "detalhe": "Baixe e instale o FortiClient no seu computador."
+      },
+      {
+        "titulo": "Configurar VPN",
+        "detalhe": "Abra o FortiClient, insira o servidor e suas credenciais de acesso."
+      },
+      {
+        "titulo": "Testar Conexão",
+        "detalhe": "Teste o acesso à intranet para garantir que a VPN está funcionando."
+      },
+      {
+        "titulo": "Finalizar Chamado",
+        "detalhe": "Se tudo estiver funcionando, finalize o chamado. Caso contrário, reabra com a TI."
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "Como solicitar reembolso de despesas corporativas",
+    "descricao": "Procedimento detalhado para gestores e colaboradores solicitarem reembolso de despesas realizadas em nome da empresa, garantindo conformidade com as políticas internas de gastos.",
+    "subCategoria": "Gestão",
+    "status": "Ativo",
+    "responsavel": "João Pereira",
+    "ultimaAtualizacao": "2025-10-22T14:00:00Z",
+    "setor": "Administração",
+    "ferramentasUsadas": [
+      "Sistema de Reembolsos (ERP)",
+      "Planilha de Despesas",
+      "E-mail Corporativo",
+      "E-mail Corporativo",
+      "E-mail Corporativo"
+    ],
+    "passoAPasso": [
+      {
+        "titulo": "Reunir Comprovantes",
+        "detalhe": "Separe todas as notas fiscais e recibos originais relacionados às despesas realizadas."
+      },
+      {
+        "titulo": "Preencher Planilha de Despesas",
+        "detalhe": "Informe data, tipo de despesa, valor e centro de custo correspondente na planilha padrão da empresa."
+      },
+      {
+        "titulo": "Submeter no Sistema de Reembolsos",
+        "detalhe": "Acesse o ERP, vá em 'Despesas > Solicitar Reembolso' e anexe a planilha e os comprovantes digitalizados."
+      },
+      {
+        "titulo": "Aprovação do Gestor",
+        "detalhe": "O gestor imediato revisará a solicitação e aprovará (ou solicitará ajustes) no sistema."
+      },
+      {
+        "titulo": "Revisão Financeira",
+        "detalhe": "O setor financeiro validará os valores e a conformidade com a política de reembolsos."
+      },
+      {
+        "titulo": "Pagamento",
+        "detalhe": "Após aprovação final, o valor será reembolsado junto ao próximo ciclo de pagamentos."
+      },
+      {
+        "titulo": "Confirmação do Reembolso",
+        "detalhe": "O colaborador receberá notificação por e-mail confirmando o depósito."
+      }
+    ]
+  }
+]
