@@ -3,27 +3,19 @@
 
 import ProcessCard from "./TaskCard";
 import type { Processo } from '@/types/processo';
-import { useState } from 'react'; // Este useState é para o accordion
+import { useState } from 'react';
 
-// 1. REMOVIDO: import card from "../processos/card.json";
-
-// 2. Interface de Props para receber a lista filtrada
 interface TaskInfoProps {
   processos: Processo[];
 }
 
-// 3. Recebe 'processos' como prop
 export default function TaskInfo({ processos }: TaskInfoProps) {
-  // 4. REMOVIDO: const processos = card as Processo[];
-
-  // 5. Este estado é local e correto. Controla o accordion.
   const [expandedCardId, setExpandedCardId] = useState<string | null>(null);
 
   const handleToggleExpand = (id: string) => {
     setExpandedCardId(prevId => (prevId === id ? null : id));
   };
 
-  // 6. Mensagem para quando a lista estiver vazia
   if (processos.length === 0) {
     return (
       <div className="grid grid-cols-12 gap-8 mt-16 items-start">

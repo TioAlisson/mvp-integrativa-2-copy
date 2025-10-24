@@ -1,21 +1,21 @@
 [
   {
-    "title": "Retenção da Equipe",
-    "value": "+80%",
+    "title": "Tempo Médio de Análise",
+    "value": "30min",
     "bgColor": "bg-blue-400",
     "textColor": "text-blue-400",
     "perc": 92
   },
   {
-    "title": "Tempo de Integração",
-    "value": "4,2 meses",
+    "title": "Taxa de Processos Relevantes",
+    "value": "80%",
     "bgColor": "bg-blue-400",
     "textColor": "text-blue-400",
     "perc": 85
   },
   {
-    "title": "Custo Médio de Contratação",
-    "value": "R$ 12.500",
+    "title": "Taxa de Implementação",
+    "value": "90%",
     "bgColor": "bg-blue-400",
     "textColor": "text-blue-400",
     "perc": 90

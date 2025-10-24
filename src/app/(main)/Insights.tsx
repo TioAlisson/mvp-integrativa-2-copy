@@ -5,7 +5,7 @@ import HeaderCard from "./HeaderCard";
 
 export default function Insights() {
     return (
-        <div className="shadow-[1px_1px_10px_rgba(0,0,0,0.15)] rounded-xl p-6 border-t-8 bg-white border-secondary-500 mt-12 lg:mt-0">
+        <div className="shadow-[1px_1px_10px_rgba(0,0,0,0.15)] rounded-xl p-6 border-t-8 bg-white border-secondary-500 mt-12 lg:mt-0 lg:min-h-[260px]">
             <div className="flex justify-between">
                 <h2 className="text-black font-semibold mb-6">Insights da Equipe</h2>
                 <div className="flex gap-2">
