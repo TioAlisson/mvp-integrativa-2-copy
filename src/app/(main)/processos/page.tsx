@@ -1,98 +1,61 @@
-'use client';
+import { getProcessos, getCategorias } from '@/lib/queries/processos'
+import ProcessosClient from './ProcessosClient'
 
-// 1. Importe o useState, o ícone e o Modal
-import { useState } from 'react';
-import { Plus } from 'lucide-react'; // ou o caminho para seu ícone
+// Server Component - Busca os dados
+export default async function ProcessosPage() {
+  try {
+    // Busca os processos e categorias do banco em paralelo
+    const [processos, categorias] = await Promise.all([
+      getProcessos(),
+      getCategorias()
+    ])
 
-
-import Tabs from "./Tabs";
-import TaskInfo from "./TaskInfo";
-import type { Processo } from '@/types/processo';
-import card from "../processos/card.json";
-import NovoProcessoModal from '../NovoProcessoModal';
-
-type SubcategoryType = { name: string; };
-type MenuItemType = { name: string; subcategories: SubcategoryType[]; };
-
-const menuItems: MenuItemType[] = [
-  {
-    name: 'Informática',
-    subcategories: [{ name: 'Redes' }, { name: 'Dev' }],
-  },
-  {
-    name: 'Administração',
-    subcategories: [{ name: 'Gestão' }],
-  },
-];
-
-export default function Processos() {
-  // 3. Adicione o estado para controlar o modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [activeTab, setActiveTab] = useState<string>(menuItems[0].name);
-  const initialSubTab = menuItems[0]?.subcategories[0]?.name ?? null;
-  const [activeSubTab, setActiveSubTab] = useState<string | null>(initialSubTab);
-
-  const handleMainTabClick = (tabName: string) => {
-    setActiveTab(tabName);
-    const selectedTab = menuItems.find(item => item.name === tabName);
-    if (selectedTab && selectedTab.subcategories && selectedTab.subcategories.length > 0) {
-      setActiveSubTab(selectedTab.subcategories[0].name);
-    } else {
-      setActiveSubTab(null);
-    }
-  };
-
-  const handleSubTabClick = (mainTabName: string, subTabName: string) => {
-    setActiveTab(mainTabName);
-    setActiveSubTab(subTabName);
-  };
-
-  const todosProcessos = card as Processo[];
-
-  const processosFiltrados = todosProcessos.filter(processo => {
-    return processo.setor === activeTab && processo.subCategoria === activeSubTab;
-  });
-
-  return (
-    <>
-      <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-6">
-        <div>
-          <h1 className="text-3xl font-bold text-zinc-900 mb-2">Painel de Processos Administrativos</h1>
-          <p className="text-zinc-500">
-            Acompanhe todos os processos ativos, em análise, sugestões e obsoletos da sua equipe.
-          </p>
+    // Verifica se os dados foram carregados
+    if (!categorias || categorias.length === 0) {
+      return (
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center p-8 bg-white rounded-lg shadow-lg">
+            <h2 className="text-2xl font-bold text-red-600 mb-4">
+              Erro ao Carregar Categorias
+            </h2>
+            <p className="text-gray-600 mb-4">
+              Não foi possível carregar as categorias do banco de dados.
+            </p>
+            <p className="text-sm text-gray-500 mb-4">
+              Verifique se:
+            </p>
+            <ul className="text-left text-sm text-gray-600 space-y-2">
+              <li>✓ As tabelas  existem</li>
+              <li>✓ Há dados inseridos nessas tabelas</li>
+              <li>✓ As variáveis de ambiente estão configuradas</li>
+            </ul>
+          </div>
         </div>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="cursor-pointer hidden lg:flex justify-center w-fit uppercase font-semibold rounded-xl px-5 lg:px-8 py-3 border-2 border-secondary-500 shadow-[0_8px_0_0_#4274CC] transition-all ease-in-out duration-500 hover:shadow-[0_4px_0_0_#4274CC] hover:translate-y-2 gap-4 group"
-        >
-          <Plus width={20} className="group-hover:rotate-180 duration-700" />
-          Cadastrar Novo Processo
-        </button>
+      )
+    }
+
+    // Passa os dados para o Client Component
+    return <ProcessosClient processos={processos} categorias={categorias} />
+  } catch (error) {
+    console.error('Erro ao carregar página de processos:', error)
+    
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center p-8 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold text-red-600 mb-4">
+            Erro ao Carregar Dados
+          </h2>
+          <p className="text-gray-600 mb-4">
+            Ocorreu um erro ao buscar os dados do banco.
+          </p>
+          <pre className="text-xs text-left bg-gray-100 p-4 rounded overflow-auto">
+            {error instanceof Error ? error.message : 'Erro desconhecido'}
+          </pre>
+        </div>
       </div>
-
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="flex mx-auto mb-8 justify-center lg:hidden w-fit uppercase font-semibold rounded-xl px-5 lg:px-8 py-3 border-2 border-secondary-500 shadow-[0_8px_0_0_#4274CC] transition-all ease-in-out duration-500 hover:shadow-[0_4px_0_0_#4274CC] hover:translate-y-2 gap-4 group"
-      >
-        <Plus width={20} className="group-hover:rotate-135 duration-700" />
-        Cadastrar Novo Processo
-      </button>
-
-      <Tabs
-        menuItems={menuItems}
-        activeTab={activeTab}
-        activeSubTab={activeSubTab}
-        onMainTabClick={handleMainTabClick}
-        onSubTabClick={handleSubTabClick}
-      />
-
-      <TaskInfo processos={processosFiltrados} />
-      <NovoProcessoModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
-    </>
-  );
+    )
+  }
 }
+
+// Opcional: Configuração de cache/revalidação
+export const revalidate = 0 // Desabilita cache para sempre buscar dados frescos

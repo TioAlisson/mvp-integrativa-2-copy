@@ -1,4 +1,4 @@
-import data from "../(main)/processos/card.json";
+import data from "./processos/card.json";
 
 function StatusBadge({ status }: { status: string }) {
   const baseClasses = "px-3 py-1 text-xs font-medium rounded-full text-white";
